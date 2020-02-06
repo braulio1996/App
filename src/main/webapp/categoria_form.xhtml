@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:th="http://www.thymeleaf.org"> 
+
+<h:head>
+	<title><input value="#{usuarioMB.usuario.nombre}" /></title>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
+	
+	<!--JQUERY-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script 
+		src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	
+	<!-- Los iconos tipo Solid de Fontawesome-->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"></link>
+	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	
+	<!-- Nuestro css-->
+	<link rel="stylesheet" type="text/css" href="user-form.css"
+		th:href="@{/user-form.css}"/>
+	<!-- DATA TABLE -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+	        $('#userList').DataTable();
+	    } );
+	</script>
+</h:head> 
+<body>
+<h:form>
+<div class="container">
+	<div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+		<ul class="nav nav-tabs justify-content-end">
+		<li class="nav-item">
+			<a class="nav-link " href="index.xhtml" role="tab" aria-controls="list" aria-selected="false" >Inicio</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link " id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="true" >Lista</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="false">Crear</a>				   	
+			</li>
+		</ul>
+		
+		<div class="tab-content" id="myTabContent">
+			
+			<div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+				<div class="card">
+					<div class="card-header">
+						<h4>Crear</h4>
+					</div>
+					<div class="card-body">
+						<h:form class="form" role="form" autocomplete="off">
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+								<div class="col-lg-9">
+									<h:inputText class="form-control" type="text"  value="#{categoriaMB.categoria.nombre}"/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label form-control-label">Descripcion</label>
+								<div class="col-lg-9">
+									<h:inputText class="form-control" type="text" value="#{categoriaMB.categoria.descripcion}" />
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<div class="col-lg-12 text-center">
+									<input type="reset" class="btn btn-secondary" value="Cancelar"/>
+									<h:commandButton class="btn btn-primary" action="#{categoriaMB.guardarCategoria()}" value="Crear" />
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
+				<div class="card">
+					<div class="card-header">
+						<h4>Categoria</h4>
+					</div>
+					<div class="card-body">
+						<div class="dataTable-responsive">
+							<h:dataTable id="userList" class="dataTable dataTable-bordered dataTable-hover dataTable-striped" value="#{categoriaMB.listar()}" var="u"
+							styleClass = "employeeTable"
+  							headerClass = "employeeTableHeader"
+   							rowClasses = "employeeTableOddRow,employeeTableEvenRow">
+   							
+								    <h:column>
+									<f:facet name="header">categoriaId</f:facet>
+										#{u.categoriaID}
+									</h:column>
+									<h:column>
+									<f:facet name="header">Nombre</f:facet>
+										#{u.nombre}
+									</h:column>
+									<h:column>
+									<f:facet name="header">Descripcion</f:facet>
+										#{u.descripcion}
+									</h:column>
+									<h:column> 
+									<h:commandLink rendered="#{!task.IS_SEEN}" value="" action="#{categoriaMB.detalle(u)}"><i class="fas fa-edit"></i></h:commandLink>
+									</h:column>		
+									<h:column> 
+									 <h:commandLink rendered="#{!task.IS_SEEN}" value="" action="#{categoriaMB.borrarCategoria(u)}"><i class="fas fa-user-times" onclick="location.reload"></i></h:commandLink>
+									</h:column>	
+							</h:dataTable>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	</h:form>					
+</body> 
+</html>
