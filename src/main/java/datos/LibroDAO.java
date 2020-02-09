@@ -44,7 +44,7 @@ public class LibroDAO {
 }
 	public List<Libro> listarLibros() throws SQLException {
 		try {
-			String jpql = "select l from Libro l JOIN FETCH l.categorias";
+			String jpql = "select l from Libro l JOIN FETCH l.categorias ";
 			Query query = em.createQuery(jpql, Libro.class);
 			Libro libro= (Libro) query.getSingleResult();
 			

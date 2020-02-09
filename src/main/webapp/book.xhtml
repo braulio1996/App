@@ -1,101 +1,117 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:th="http://www.thymeleaf.org"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:th="http://www.thymeleaf.org">
 
 <h:head>
-<title>User Information and Form</title>
-	
+	<title>User Information and Form</title>
+
 	<!--JQUERY-->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+
 	<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script 
-		src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script 
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+
 	<!-- Los iconos tipo Solid de Fontawesome-->
 	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"/>
+		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />
 	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-	
-	<!-- Nuestro css-->
-	<link rel="stylesheet" type="text/css" href="user-form.css" th:href="@{/css/user-form.css}"/>
-	<!-- DATA TABLE -->
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>	
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 
-<f:metadata>
+	<!-- Nuestro css-->
+	<link rel="stylesheet" type="text/css" href="user-form.css"
+		th:href="@{/css/user-form.css}" />
+	<!-- DATA TABLE -->
+	<script
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+	<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
+
+	<f:metadata>
 		<f:viewParam id="id" name="id" value="#{libroMB.id}"></f:viewParam>
 		<f:viewParam id="updated" name="updated" value="#{libroMB.updated}"></f:viewParam>
 		<f:viewAction action="#{libroMB.buscar}" />
 	</f:metadata>
-</h:head> 
-<body> 
-<div class="container">
-				<div class="card">
-					<div class="card-header">
-						<h4>Actualizar</h4>
-					</div>
-					<div class="card-body">
-						<h:form class="form" role="form" autocomplete="off">
-						<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">ISBN</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="text"  value="#{libroMB.libro.isbn}"/>
-								</div>
-							</div>
-						<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">Titulo</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="text"  value="#{libroMB.libro.titulo}"/>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">Autor</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="text" value="#{libroMB.libro.autor}" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">Año</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="tex" value="#{libroMB.libro.anio}" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">Editorial</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="text" value="#{libroMB.libro.editorial}" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-lg-3 col-form-label form-control-label">Precio</label>
-								<div class="col-lg-9">
-									<h:inputText class="form-control" type="text" value="#{libroMB.libro.precio}" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-lg-12 text-center">
-									<input type="reset" class="btn btn-secondary" value="Cancelar" onclick="location.href='user_form.xhtml'"/>
-									<h:commandButton class="btn btn-primary" action="#{libroMB.actualizar()}" value="Actualizar" />
-								</div>
-								
-							</div>
-						</h:form>
-					</div>
-				</div>
+</h:head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h4>Actualizar</h4>
 			</div>
+			<div class="card-body">
+				<h:form class="form" role="form" autocomplete="off">
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">ISBN</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="text"
+								value="#{libroMB.libro.isbn}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Titulo</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="text"
+								value="#{libroMB.libro.titulo}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Autor</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="text"
+								value="#{libroMB.libro.autor}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Año</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="tex"
+								value="#{libroMB.libro.anio}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Editorial</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="text"
+								value="#{libroMB.libro.editorial}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Precio</label>
+						<div class="col-lg-9">
+							<h:inputText class="form-control" type="text"
+								value="#{libroMB.libro.precio}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-lg-12 text-center">
+							<input type="reset" class="btn btn-secondary" value="Cancelar"
+								onclick="location.href='user_form.xhtml'" />
+							<h:commandButton class="btn btn-primary"
+								action="#{libroMB.actualizar()}" value="Actualizar" />
+						</div>
 
-</body> 
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</body>
 </html>

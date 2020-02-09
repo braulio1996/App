@@ -24,8 +24,6 @@ public class Libro {
 	private Double precio;
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Categoria> categorias;
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Voto>votos;
 	public int getIsbn() {
 		return isbn;
 	}
@@ -63,12 +61,6 @@ public class Libro {
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-	public List<Voto> getVotos() {
-		return votos;
-	}
-	public void setVotos(List<Voto> votos) {
-		this.votos = votos;
-	}
 	
 	public Double getPrecio() {
 		return precio;
@@ -83,17 +75,12 @@ public class Libro {
 		}
 		categorias.add(categoria);
 	}
-		public void addVotos(Voto voto) {
-			if(votos==null) {
-				votos= new ArrayList<>();
-				
-			}
-			votos.add(voto);
+	@Override
+	public String toString() {
+		return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", editorial="
+				+ editorial + ", precio=" + precio + ", categorias=" + categorias + "]";
 	}
-		@Override
-		public String toString() {
-			return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", editorial="
-					+ editorial + ", precio=" + precio + "]";
-		}
+	
+	
 	
 }

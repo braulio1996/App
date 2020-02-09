@@ -76,6 +76,7 @@ public class CategoriaMB {
 	
 	public String guardarCategoria() {
 		con.guardarCategoria(this.categoria);
+		init();
 		return "categoria_form";
 		
 	}
@@ -87,8 +88,7 @@ public class CategoriaMB {
 			categorias=con.listarCategorias();
 	
 		return categorias;
-			}catch (Exception e) {
-				// TODO: handle exception
+			}catch (Exception e) {		
 			}
 			return categorias;
 	}

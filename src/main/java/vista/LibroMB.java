@@ -1,6 +1,7 @@
 package vista;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -28,21 +29,13 @@ public class LibroMB {
 	private String id;
 
 private List<Libro>libros;
-private List<Libro>libros2;
-
-
-
 
 @PostConstruct
 public void init()  {
 	
 		libro= new Libro();
 		libro.addCategorias(new Categoria());
-		libros=lon.listarLibro();
-	
-		// TODO: handle exception
-	
-	
+		libros=new ArrayList<Libro>();	
 }
 
 
@@ -66,18 +59,6 @@ public void setLibros(List<Libro> libros) {
 }
 
 
-
-
-public List<Libro> getLibros2() {
-	return libros2;
-}
-
-
-public void setLibros2(List<Libro> libros2) {
-	this.libros2 = libros2;
-}
-
-
 public String crearLibro() throws SQLException {
 	try {
 		if(updated) {
@@ -87,24 +68,20 @@ public String crearLibro() throws SQLException {
 			lon.guardarLibro(this.libro);
 		}
 		init();	
+		return "libro_form";
 	}catch (Exception e) {
-		// TODO: handle exception
 	}
 	
-	return null;
+	return "libro_form";
 }
 public List<Libro> listarLibros(){
-	
-	try {
-		
+	try {	
+		libros=lon.listarLibro();
 			
-		return	libros2=lon.listarLibro();
-		
-		
 	}catch (Exception e) {
 		e.printStackTrace();
 	}
-	return null;
+	return libros;
 	
 }
 public String eliminar(Libro libro) {
