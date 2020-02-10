@@ -22,7 +22,7 @@ public class Libro {
 	private String anio;
 	private String editorial;
 	private Double precio;
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Categoria> categorias;
 	public int getIsbn() {
 		return isbn;

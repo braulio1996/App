@@ -68,8 +68,8 @@ public void setDetalles(List<Detalle> detalles) {
 }
 public void addDetalles(Detalle detalle) {
 	if(detalles==null) {
-		detalles= new ArrayList<>();
-		detalles.add(detalle);
+		detalles= new ArrayList<>();	
 	}
+	detalles.add(detalle);
 }
 }

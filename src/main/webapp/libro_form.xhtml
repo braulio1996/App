@@ -59,8 +59,7 @@
 			<div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
 				<ul class="nav nav-tabs justify-content-end">
 					<li class="nav-item"><a class="nav-link " href="index.xhtml"
-						role="tab" aria-controls="list" aria-selected="false">Inicio</a>
-					</li>
+						role="tab" aria-controls="list" aria-selected="false">Inicio</a></li>
 
 					<li class="nav-item"><a class="nav-link " id="list-tab"
 						data-toggle="tab" href="#list" role="tab" aria-controls="list"
@@ -178,25 +177,25 @@
 											<f:facet name="header">Precio</f:facet>
 										#{u.precio}
 									</h:column>
-									<h:column>
-									<f:facet name="header">Categorias</f:facet>
-									<h:dataTable value="#{u.categorias}" var="c"> 
-									<h:column>
-									<f:facet name="header">ID</f:facet>
+										<h:column>
+											<f:facet name="header">Categorias</f:facet>
+											<h:dataTable value="#{u.categorias}" var="c">
+												<h:column>
+													<f:facet name="header">ID</f:facet>
 									#{c.categoriaID}
 									</h:column>
-									<h:column>
-									<f:facet name="header">Nombre</f:facet>
+												<h:column>
+													<f:facet name="header">Nombre</f:facet>
 									#{c.nombre}
 									</h:column>
-									<h:column>
-									<f:facet name="header">Descripcion</f:facet>
+												<h:column>
+													<f:facet name="header">Descripcion</f:facet>
 									#{c.descripcion}
 									</h:column>
-									</h:dataTable>
-									</h:column>
-									
-									
+											</h:dataTable>
+										</h:column>
+
+
 										<h:column>
 											<h:commandLink rendered="#{!task.IS_SEEN}" value=""
 												action="#{libroMB.redirect(u)}">

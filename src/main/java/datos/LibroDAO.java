@@ -66,7 +66,20 @@ public class LibroDAO {
 		
 		
 	}
-	
+	public List<Object[]> librosMasComprados() {
+		try {
+			String jpql = "SELECT libros_isbn, COUNT(libros_isbn) AS RecuentoFilas FROM Detalle GROUP BY libros_isbn HAVING COUNT(*) > 0 ORDER BY libros_isbn";
+			Query query = em.createNativeQuery(jpql);
+			List<Object[]> v = query.getResultList();	
+			
+			return v;
+		}catch (Exception e) {
+			
+		}
+		
+
+		return null;
+	}
 		
 	
 	

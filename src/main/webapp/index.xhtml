@@ -3,21 +3,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:p="http://primefaces.org/ui"
+	>
 
 <h:head>
 	<link rel="stylesheet" type="text/css" href="NewFile.css"
 		th:href="@{/user-form.css}" />
 </h:head>
 <body>
+<h:form>
+
 	<nav>
 	<ul>
 		<li><a href="user_form.xhtml">Usuarios</a></li>
 		<li><a href="libro_form.xhtml">Paductos</a></li>
 		<li><a href="categoria_form.xhtml">Categorias</a></li>
 		<li><a href="#">Blog</a></li>
-		<li><a href="#">Contacto</a></li>
+
 	</ul>
 	</nav>
+	<div class="caja">
+		<p:commandButton action="#{libroMB.grafica()}" value="Libros Mas Comprados" id="graficar1" update="gril1"/>		
+		<h:panelGrid id="gril1">
+		<p:chart type="bar" model="#{libroMB.barra}" style="width: 400px; height: 400px;" rendered="#{libroMB.barra!=null}"/>
+		</h:panelGrid>
+	</div>
+	<div class="caja">
+		<p:commandButton action="#{usuarioMB.grafica()}" value="Clientes que mas compran" id="graficar2" update="gril2"/>		
+		<h:panelGrid id="gril2">
+		<p:chart type="bar" model="#{usuarioMB.barra}" style="width: 400px; height: 400px;" rendered="#{usuarioMB.barra!=null}"/>
+		</h:panelGrid>
+
+	</div>
+	<div class="caja">
+		<p:commandButton action="#{votoMB.grafica()}" value="Libros mas votados" id="graficar" update="gril"/>		
+		<h:panelGrid id="gril">
+		<p:chart type="bar" model="#{votoMB.barra}" style="width: 400px; height: 400px;" rendered="#{votoMB.barra!=null}"/>
+		</h:panelGrid>
+
+	</div>
+</h:form>
 </body>
 </html>

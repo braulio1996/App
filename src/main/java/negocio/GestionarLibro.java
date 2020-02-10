@@ -46,4 +46,8 @@ public List<Libro> listarLibro(){
 //	libro.addCategorias(new Categoria());
 //	return null;
 //}
+public List<Object[]> librosMasComprados() {
+	
+	return ldao.librosMasComprados();
+}
 }

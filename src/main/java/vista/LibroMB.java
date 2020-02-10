@@ -9,6 +9,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.BarChartSeries;
+import org.primefaces.model.chart.ChartSeries;
+
 import modelo.Categoria;
 import modelo.Libro;
 import negocio.GestionarCategoria;
@@ -18,6 +24,7 @@ import negocio.GestionarLibro;
 @ViewScoped
 public class LibroMB {
 	private Libro libro;
+	private BarChartModel barra;
 	@Inject
 	private GestionarLibro lon;
 
@@ -36,6 +43,16 @@ public void init()  {
 		libro= new Libro();
 		libro.addCategorias(new Categoria());
 		libros=new ArrayList<Libro>();	
+}
+
+
+public BarChartModel getBarra() {
+	return barra;
+}
+
+
+public void setBarra(BarChartModel barra) {
+	this.barra = barra;
 }
 
 
@@ -141,7 +158,31 @@ public void setUpdated(boolean updated) {
 	this.updated = updated;
 }
 
-
+public void grafica() {
+	barra = new BarChartModel();
+	for(Object[] obj:lon.librosMasComprados()) {
+		
+		libro=lon.buscarLibro((int) obj[0]);
+		
+		ChartSeries serie = new BarChartSeries();
+		serie.setLabel(lon.buscarLibro((int) obj[0]).getTitulo());
+		serie.set(libro.getTitulo(),(Number) obj[1]);
+		System.out.println(libro.getTitulo()+(Number) obj[1]);
+		barra.addSeries(serie);
+	
+	}
+		barra.setTitle("Libro mas Comprado");
+		barra.setLegendPosition("ne");
+		barra.setAnimate(true);
+		
+		Axis xAxis=barra.getAxis(AxisType.X);
+		xAxis.setLabel("lIBROS");
+		Axis yAxis=barra.getAxis(AxisType.Y);
+	    yAxis.setLabel("Compras");
+		yAxis.setMin(1);
+  	    yAxis.setMax(50);
+		
+	}
 
 
 

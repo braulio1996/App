@@ -51,6 +51,9 @@ public Usuario validar(String password) {
 	return udao.validar(password);
 	
 }
-
+public List<Object[]> clientesMasCompran() {
+	
+	return udao.clientesMasCompran();
+}
 
 }

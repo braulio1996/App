@@ -37,5 +37,9 @@ public class GestionarVoto {
 		
 		return vdao.listarVotos();
 	}
+public List<Object[]> masVotado() {
+		
+		return vdao.masVotado();
+	}
 
 }

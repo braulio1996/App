@@ -58,4 +58,20 @@ public class UsuarioDAO {
 	public Usuario read(int id) {
 		return em.find(Usuario.class, id);
 	}
+	public List<Object[]> clientesMasCompran() {
+		try {
+			String jpql = "SELECT usuario_userid, COUNT(usuario_userid) AS RecuentoFilas FROM Factura GROUP BY usuario_userid HAVING COUNT(*) > 0 ORDER BY usuario_userid";
+			Query query = em.createNativeQuery(jpql);
+			List<Object[]> v = query.getResultList();	
+			
+			return v;
+		}catch (Exception e) {
+			
+		}
+		
+
+		return null;
+	}
+	
+	
 }
